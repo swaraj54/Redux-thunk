@@ -1,16 +1,18 @@
 import axios from 'axios';
 
 const fetchProducts = () => {
-  return async (dispatch) => {
-    dispatch({ type: 'FETCH_PRODUCTS_REQUEST' });
+    return async (dispatch) => {
 
-    try {
-      const response = await axios.get('https://fakestoreapi.com/products');
-      dispatch({ type: 'FETCH_PRODUCTS_SUCCESS', payload: response.data });
-    } catch (error) {
-      dispatch({ type: 'FETCH_PRODUCTS_FAILURE', payload: error.message });
+        dispatch({ type: "REQUEST" });
+        try {
+            const response = await axios.get('https://fakestoreapi.com/products');
+            dispatch({ type: "SUCCESS", payload: response.data })
+        } catch (error) {
+            dispatch({ type: "ERROR", payload: error.message })
+        }
     }
-  };
-};
+}
 
-export { fetchProducts };
+
+
+export { fetchProducts }
